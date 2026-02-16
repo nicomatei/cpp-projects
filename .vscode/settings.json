@@ -1,0 +1,7 @@
+{
+  "github.copilot.enable": {
+    "cpp": false
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "ms-vscode.cpptools"
+}
