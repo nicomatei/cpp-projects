@@ -37,5 +37,6 @@ int main()
         maxTemp = 0;
     }
     cout << maxNr;
+    fin.close();
     return 0;
 }
