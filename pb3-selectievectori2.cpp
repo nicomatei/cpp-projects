@@ -2,6 +2,10 @@
 #include <fstream>
 using namespace std;
 
+// Sa se determine toate perechile de numere din vector cu proprietatea ca unul din numere e
+// este subnumar al celuilalt . Un număr natural x este numit subnumăr al unui număr natural
+// y dacă cifrele lui x apar, în aceeași ordine, pe ranguri consecutive, în numărul y.
+
 int main()
 {
     int n, v[101];
