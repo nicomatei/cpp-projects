@@ -19,7 +19,7 @@ int main()
         ogl = ogl * 10 + v[0] % 10;
         v[0] /= 10;
     }
-    return ogl;
+    v[0] = ogl;
     for (i = 1; i < n; ++i)
         if (v[i] == v[0])
         {
