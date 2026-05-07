@@ -50,5 +50,7 @@ int main()
             m[i][0] += m[i][j];
     for (int i = 1; i <= a; i++)
         cout << "suma liniei " << i << " este " << m[i][0] << endl;
+    cout << endl;
+
     return 0;
 }
