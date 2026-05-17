@@ -20,22 +20,20 @@ int main()
             fin >> a[i][j];
 
     // calculating the suma of the column
+    int maxcolsum = -100, poz = 0;
     for (int j = 1; j <= m; j++)
+    {
         for (int i = 1; i <= n; i++)
-        {
             a[0][j] += a[i][j];
-        }
-    int colmax = a[0][1];
-    for (int j = 1; j <= m; j++)
-        if (colmax < a[0][j])
-            colmax = a[0][j];
-    for (int j = 1; j <= m; j++)
-        if (colmax == a[0][j])
+        if (a[0][j] > maxcolsum)
         {
-            for (int i = 1; i <= n; i++)
-                fout << a[i][j] << " ";
-            j = m;
+            maxcolsum = a[0][j];
+            poz = j;
         }
+    }
+
+    for (int i = 1; i <= n; i++)
+        fout << a[i][poz] << " ";
     fin.close();
     fout.close();
     return 0;
