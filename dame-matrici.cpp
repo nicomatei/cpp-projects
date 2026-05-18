@@ -41,6 +41,19 @@ void afisare(int tabla[8][8], int linii[8], int coloane[8])
         printLetter(coloane[j]);
 }
 
+void populeazaTablaInitiala(int tabla[8][8])
+{
+    // punem piesele pt player 1 = 🔵 si 2 = 🔴
+    for (int i = 5; i < 8; i++)
+        for (int j = 0; j < 8; j++)
+            if (tabla[i][j] == 9)
+                tabla[i][j] = 1;
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 8; j++)
+            if (tabla[i][j] == 9)
+                tabla[i][j] = 2;
+}
+
 int main()
 {
     int tabla[8][8] = {0}, linii[8], coloane[8], i, j;
@@ -59,70 +72,31 @@ int main()
         for (j = 0; j < 8; j += 2)
             tabla[i][j] = 9;
 
-    // punem piesele pt player 1 = 🔵 si 2 = 🔴
-    for (i = 5; i < 8; i++)
-        for (j = 0; j < 8; j++)
-            if (tabla[i][j] == 9)
-                tabla[i][j] = 1;
-    for (i = 0; i < 3; i++)
-        for (j = 0; j < 8; j++)
-            if (tabla[i][j] == 9)
-                tabla[i][j] = 2;
+    // populeazaTablaInitiala(tabla);
+    tabla[2][3] = 2;
+    tabla[3][4] = 1;
 
     // afisare
     afisare(tabla, linii, coloane);
     cout << endl;
 
-    string moveFrom, moveTo;
     int playerMove = 1; // det a cui ii tura
-    cout << endl
-         << "player 🔵: " << endl;
-    cout << "selecteaza piesa pe care vrei sa o muti (ex: e3): ";
-    cin >> moveFrom;
-    cout << "unde sa o muti (ex: f4): ";
-    cin >> moveTo;
-    cout << moveFrom << " -> " << moveTo << endl
-         << endl;
-    int x1 = getLetterPoz(moveFrom[0]);
-    int y1 = 8 - (moveFrom[1] - '0');
-    int x2 = getLetterPoz(moveTo[0]);
-    int y2 = 8 - (moveTo[1] - '0');
-    if (tabla[y2][x2] == 9 && (tabla[y1][x1] == 1 && playerMove == 1))
-    {
-        swap(tabla[y1][x1], tabla[y2][x2]);
-        afisare(tabla, linii, coloane);
-        if (playerMove == 1)
-            playerMove = 2;
-        else
-            playerMove = 1;
-    }
-    else
-        cout << "invalide move" << endl;
-    cout << endl;
-    cout << endl;
-    cout << "selecteaza piesa + spatiu + unde o muti (ex: d6 c5): ";
+    cout << "selecteaza piesa + spatiu + unde o muti (ex: e3 f4): " << endl;
 
-    bool valid = true;
-    while (true)
+    int c1 = 12;
+    int c2 = 12;
+    while (c1 > 0 && c2 > 0)
     {
-        valid = false;
-        for (i = 1; i < 8; i++)
-            for (j = 1; j < 8; j++)
-                if (tabla[i][j] == 1 || tabla[i][j] == 2)
-                {
-                    valid = true;
-                }
-
         string moveFrom, moveTo;
         if (playerMove == 1)
             cout << "player 🔵: ";
         else
             cout << "player 🔴: ";
         cin >> moveFrom >> moveTo;
-        x1 = getLetterPoz(moveFrom[0]);
-        y1 = 8 - (moveFrom[1] - '0');
-        x2 = getLetterPoz(moveTo[0]);
-        y2 = 8 - (moveTo[1] - '0');
+        int x1 = getLetterPoz(moveFrom[0]);
+        int y1 = 8 - (moveFrom[1] - '0');
+        int x2 = getLetterPoz(moveTo[0]);
+        int y2 = 8 - (moveTo[1] - '0');
         if (tabla[y2][x2] == 9 && ((tabla[y1][x1] == 1 && playerMove == 1) || (tabla[y1][x1] == 2 && playerMove == 2)))
         {
             swap(tabla[y1][x1], tabla[y2][x2]);
@@ -159,7 +133,28 @@ int main()
         }
         else
             cout << "invalide move" << endl;
+
+        // verif daca mai sunt piese de ambele culori
+        c1 = 0, c2 = 0;
+        for (i = 1; i < 8; i++)
+            for (j = 1; j < 8; j++)
+            {
+                if (tabla[i][j] == 1)
+                {
+                    c1++;
+                }
+                if (tabla[i][j] == 2)
+                {
+                    c2++;
+                }
+            }
     }
+    if (c2 == 0)
+        cout << endl
+             << "WINNER IS 🔵" << endl;
+    else
+        cout << endl
+             << "WINNER IS 🔴" << endl;
 
     return 0;
 }
