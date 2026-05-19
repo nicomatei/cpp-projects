@@ -151,6 +151,7 @@ int main()
                     c2++;
                 }
             }
+        // verif daca piesele ramase mai pot fi mutate (daca nu atunci end game)
     }
     if (c2 == 0)
         cout << endl
