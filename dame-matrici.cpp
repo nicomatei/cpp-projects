@@ -72,9 +72,9 @@ int main()
         for (j = 0; j < 8; j += 2)
             tabla[i][j] = 9;
 
-    // populeazaTablaInitiala(tabla);
-    tabla[2][3] = 2;
-    tabla[3][4] = 1;
+    populeazaTablaInitiala(tabla);
+    // tabla[2][3] = 2;
+    // tabla[3][4] = 1;
 
     // afisare
     afisare(tabla, linii, coloane);
@@ -89,9 +89,11 @@ int main()
     {
         string moveFrom, moveTo;
         if (playerMove == 1)
-            cout << "player 🔵: ";
+            cout << endl
+                 << "player 🔵: ";
         else
-            cout << "player 🔴: ";
+            cout << endl
+                 << "player 🔴: ";
         cin >> moveFrom >> moveTo;
         int x1 = getLetterPoz(moveFrom[0]);
         int y1 = 8 - (moveFrom[1] - '0');
@@ -104,22 +106,22 @@ int main()
             // daca sare peste o dama adversara pe diagonala o manana
             if (playerMove == 1)
             {
-                if (tabla[y1 - 1][x1 + 1] == 2 && tabla[y2][x2] == 1)
+                if (tabla[y1 - 1][x1 + 1] == 2 && tabla[y2][x2] == 1 && tabla[y2][x2] == tabla[y1 - 2][x1 + 2])
                 {
                     tabla[y1 - 1][x1 + 1] = 9;
                 }
-                if (tabla[y1 - 1][x1 - 1] == 2 && tabla[y2][x2] == 1)
+                if (tabla[y1 - 1][x1 - 1] == 2 && tabla[y2][x2] == 1 && tabla[y2][x2] == tabla[y1 - 2][x1 - 2])
                 {
                     tabla[y1 - 1][x1 - 1] = 9;
                 }
             }
             if (playerMove == 2)
             {
-                if (tabla[y1 + 1][x1 + 1] == 1 && tabla[y2][x2] == 2)
+                if (tabla[y1 + 1][x1 + 1] == 1 && tabla[y2][x2] == 2 && tabla[y2][x2] == tabla[y1 + 2][x1 + 2])
                 {
                     tabla[y1 + 1][x1 + 1] = 9;
                 }
-                if (tabla[y1 + 1][x1 - 1] == 1 && tabla[y2][x2] == 2)
+                if (tabla[y1 + 1][x1 - 1] == 1 && tabla[y2][x2] == 2 && tabla[y2][x2] == tabla[y1 + 2][x1 - 2])
                 {
                     tabla[y1 + 1][x1 - 1] = 9;
                 }
@@ -132,7 +134,8 @@ int main()
                 playerMove = 1;
         }
         else
-            cout << "invalide move" << endl;
+            cout << "invalide move";
+        cout << endl;
 
         // verif daca mai sunt piese de ambele culori
         c1 = 0, c2 = 0;
