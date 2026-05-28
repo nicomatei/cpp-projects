@@ -69,12 +69,12 @@ bool canMove(int x1, int y1, int x2, int y2, int tabla[8][8], int playerMove)
         possibleMove = false; // blue can only move blue pieces, red can only move red pieces
         cout << "pls only move with your pieces";
     }
-    else if (y1 - y2 == direction && abs(x1 - x2) != 1)
+    else if (y1 - y2 == -1 * direction && abs(x1 - x2) != 1)
     {
         possibleMove = false;
         cout << "pls learn how to play";
     }
-    else if (y1 - y2 == 2 * direction && !(abs(x1 - x2) == 2 && tabla[y1 + direction][x1 + (x2 - x1) / 2] == opponent))
+    else if (y1 - y2 == -2 * direction && !(abs(x1 - x2) == 2 && tabla[y1 + direction][x1 + (x2 - x1) / 2] == opponent))
     {
         possibleMove = false;
         cout << "pls check the instructions manuals";
