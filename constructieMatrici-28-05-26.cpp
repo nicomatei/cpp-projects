@@ -16,7 +16,7 @@ int main()
     // 1.completare pe linii cu nr naturale 0, 1, 2...
     int m, n, nr = 0;
     cin >> m >> n;
-    int a[m][n];
+    int a[m][n], p[n][n];
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
         {
@@ -102,20 +102,21 @@ int main()
     // 6. matrice patratica A n*n. sa aiba pe diagonale doar 0,
     // in partea N si S sa aiba 1 si in E si V sa aiba 2
     cout << "n = " << n << endl;
-    // int p[n][n] = {0};
-    //   for (int i = 0; i < n; i++)
-    //   {
-    //       p[i][i] = 0;
-    //       p[i][n - i + 1] = 0;
-    //   }
-    //  for (int i = 0; i < n; i++)
-    //  {
-    //      for (int j = 0; j < n; j++)
-    //          cout << p[i][j] << " ";
-    //      cout << endl;
-    //  }
-    //  cout << endl;
+    // int p[n][n];
+    for (int i = 0; i < n; i++)
+    {
+        p[i][i] = 0;
+        p[i][n - i + 1] = 0;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+            cout << p[i][j] << " ";
+        cout << endl;
+    }
+    cout << endl;
 
     // 7. se cit x natural. contstr matrice cu cif lui x pe coloane
+
     return 0;
 }
